@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import { authController } from '../controllers/AuthController.js';
+
+const router = Router();
+
+router.post('/register', (req, res, next) => authController.register(req, res, next));
+router.post('/login', (req, res, next) => authController.login(req, res, next));
+// router.post('/verify-2fa');
+
+export default router;

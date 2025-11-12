@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema(
     twoFactorExpiresAt: {
       type: Date,
       default: null,
-    }
+    },
   },
   {
     timestamps: true,

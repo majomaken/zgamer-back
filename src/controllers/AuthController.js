@@ -1,3 +1,4 @@
+import { GLOBAL_HTTP_STATUS } from "../constants/global.js";
 import { User } from "../models/User.js";
 import { createAccessToken } from "../utils/token.js";
 import { loginSchema, registerSchema } from "../validators/authValidators.js";
@@ -46,8 +47,9 @@ class AuthController {
 
       const accessToken = createAccessToken(user.id);
 
-      return res.status(200).json({
-        message: 'Login exitoso',
+      return res.status(GLOBAL_HTTP_STATUS.SUCCESS.code).json({
+        status: GLOBAL_HTTP_STATUS.SUCCESS.word,
+        message: GLOBAL_HTTP_STATUS.SUCCESS.message,
         token: accessToken,
         user: this.#sanitizeUser(user),
       })

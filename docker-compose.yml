@@ -1,5 +1,25 @@
 services:
-  mongo:
+  api:
+    build: .
+    command: npm run dev
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      DOMAIN: localhost
+      MONGO_URI: mongodb://mongodb:27017/zonagamerdb
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: 3h
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - app-network
+    restart: always
+  mongodb:
     image: mongo:latest
     ports:
       - 27017:27017

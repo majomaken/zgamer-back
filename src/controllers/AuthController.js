@@ -1,12 +1,11 @@
 import { GLOBAL_HTTP_STATUS } from "../constants/global.js";
 import { User } from "../models/User.js";
 import { createAccessToken } from "../utils/token.js";
-import { loginSchema, registerSchema } from "../validators/authValidators.js";
 
 class AuthController {
   async register(req, res, next) {
     try {
-      const payload = registerSchema.parse(req.body);
+      const payload = req.body;
 
       const existingUser = await User.findOne({ email: payload.email});
 
@@ -28,7 +27,7 @@ class AuthController {
 
   async login(req, res, next) {
     try {
-      const { email, password } = loginSchema.parse(req.body);
+      const { email, password } = req.body;
 
       const user = await User.findOne({ email });
       if (!user) {

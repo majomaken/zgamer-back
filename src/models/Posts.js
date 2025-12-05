@@ -7,9 +7,21 @@ const postSchema = new mongoose.Schema(
       required: [true, 'El título es obligatorio'],
       trim: true,
     },
+    summary: {
+      type: String,
+      trim: true,
+    },
+    excerpt: {
+      type: String,
+      trim: true,
+    },
     content: {
       type: String, // Text, Varchar
       required: [true, 'El contenido es obligatorio'],
+    },
+    tags: {
+      type: [String],
+      default: [],
     },
     coverImage: {
       type: String,
@@ -24,6 +36,10 @@ const postSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
+    },
+    images: {
+      type: [String],
+      default: [],
     }
   },
   {

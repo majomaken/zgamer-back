@@ -65,7 +65,7 @@ class PostController {
 
   async create(req, res, next) {
     try {
-      const payload = postCreateSchema.parse(req.body);
+      const payload = req.body;
 
       const post = await Post.create({
         ...payload,
@@ -87,7 +87,7 @@ class PostController {
 
   async update(req, res, next) {
     try {
-      const payload = postUpdateSchema.parse(req.body);
+      const payload = req.body;
       const post = await Post.findById(req.params.id);
 
       if (!post) {

@@ -19,11 +19,11 @@ router.get(POST_ROUTES.details, (req, res, next) =>
   postController.getById(req, res, next)
 );
 // UPDATE POST
-router.put(POST_ROUTES.update, authenticate, (req, res, next) =>
+router.put(POST_ROUTES.update, authenticate, validateRequest(postUpdateSchema), (req, res, next) =>
   postController.update(req, res, next)
 );
 // // DELETE POST
-router.delete(POST_ROUTES.delete, authenticate, validateRequest(postUpdateSchema), (req, res, next) =>
+router.delete(POST_ROUTES.delete, authenticate, (req, res, next) =>
   postController.remove(req, res, next)
 );
 

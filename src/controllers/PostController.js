@@ -13,6 +13,7 @@ class PostController {
       const safeLimit = isNaN(parsedLimit) ?? parsedLimit < 1 ? 10 : parsedLimit;
       const skip = (safePage - 1) * safeLimit;
 
+      // Consultar los posts y el total de posts
       const [posts, total] = await Promise.all([
         Post.find()
           .sort({ createdAt: -1 }) // Ordenación descendente por fecha de creación
